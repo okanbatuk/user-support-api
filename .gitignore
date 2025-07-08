@@ -1,0 +1,46 @@
+# Build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dbmdl
+
+# IDE settings
+.vscode/
+.idea/
+*.csproj.user
+
+# Environment and secrets
+.env
+*.env.*
+secrets.json
+
+# Application settings
+appsettings.*.json
+!appsettings.Development.json  # Keep local development config
+
+# Log files
+logs/
+*.log
+*.nlog
+
+# Local database files
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# Redis dump file
+dump.rdb
+
+# HTTP request files (e.g. REST Client files)
+*.http
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Git merge conflict/backup files
+*.orig
