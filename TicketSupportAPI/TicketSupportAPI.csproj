@@ -21,4 +21,10 @@
     <PackageReference Include="StackExchange.Redis" Version="2.8.41" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TicketSupport.Domain\TicketSupport.Domain.csproj" />
+    <ProjectReference Include="..\TicketSupport.Application\TicketSupport.Application.csproj" />
+    <ProjectReference Include="..\TicketSupport.Infrastructure\TicketSupport.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

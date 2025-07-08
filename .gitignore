@@ -1,46 +1,58 @@
-# Build artifacts
-bin/
-obj/
-*.user
-*.suo
-*.cache
+#########################
+# Build Artifacts
+#########################
+**/bin/
+**/obj/
 *.pdb
 *.dbmdl
 
-# IDE settings
+#########################
+# User-Specific / IDE Settings
+#########################
+*.user
+*.suo
+*.cache
 .vscode/
 .idea/
 *.csproj.user
 
-# Environment and secrets
-.env
+#########################
+# App Settings / Secrets
+#########################
+*.env
 *.env.*
 secrets.json
-
-# Application settings
 appsettings.*.json
-!appsettings.Development.json  # Keep local development config
+!**/appsettings.Development.json
 
-# Log files
+#########################
+# Logs
+#########################
 logs/
 *.log
 *.nlog
 
-# Local database files
+#########################
+# Local Databases
+#########################
 *.mdf
 *.ldf
 *.sqlite
 *.db
 
-# Redis dump file
+#########################
+# Redis / Cache
+#########################
 dump.rdb
 
-# HTTP request files (e.g. REST Client files)
+#########################
+# REST Client Files
+#########################
 *.http
 
-# OS-specific files
+#########################
+# OS & Merge Artifacts
+#########################
 .DS_Store
 Thumbs.db
-
-# Git merge conflict/backup files
 *.orig
