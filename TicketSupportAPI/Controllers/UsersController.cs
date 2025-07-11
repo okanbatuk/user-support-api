@@ -18,6 +18,7 @@ namespace TicketSupportAPI.Controllers
       var users = await _userService.GetAllAsync();
       return Ok(users.Select(u => new UserDto
       {
+        UserId = u.Uuid,
         Name = u.Name,
         Email = u.Email
       }));
@@ -32,6 +33,7 @@ namespace TicketSupportAPI.Controllers
 
       return Ok(new UserDto
       {
+        UserId = user.Uuid,
         Name = user.Name,
         Email = user.Email
       });

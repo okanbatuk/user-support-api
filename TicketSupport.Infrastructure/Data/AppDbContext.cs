@@ -14,6 +14,10 @@ namespace TicketSupport.Infrastructure.Data
     {
       base.OnModelCreating(builder);
 
+      builder.Entity<User>()
+        .Property(u => u.Role)
+        .HasConversion<string>();
+
       foreach (var entity in builder.Model.GetEntityTypes())
       {
         var idProperty = entity.FindProperty("Id");
