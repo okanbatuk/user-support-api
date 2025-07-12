@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using TicketSupport.Domain.Entities;
 
 namespace TicketSupport.Application.Interfaces.Services

@@ -1,19 +1,19 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketSupport.Application.DTOs.Auth;
 using TicketSupport.Application.Interfaces.Services;
-using TicketSupport.Application.Common.Interfaces;
-using TicketSupport.Domain.Entities;
 
 namespace TicketSupportAPI.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class AuthController(IAuthService authService, IApiResponseHelper apiResponseHelper) : ControllerBase
+  public class AuthController : ControllerBase
   {
-    private readonly IAuthService _authService = authService;
-    private readonly IApiResponseHelper _apiResponseHelper = apiResponseHelper;
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
+    {
+      _authService = authService;
+    }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)

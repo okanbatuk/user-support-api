@@ -10,11 +10,18 @@ using TicketSupport.Domain.Interfaces.Repositories;
 
 namespace TicketSupport.Application.Services
 {
-  public class AuthService(IUserRepository userRepository, IPasswordHasher passwordHasher, IApiResponseHelper apiResponseHelper) : IAuthService
+  public class AuthService : IAuthService
   {
-    private readonly IUserRepository _userRepository = userRepository;
-    private readonly IPasswordHasher _passwordHasher = passwordHasher;
-    private readonly IApiResponseHelper _apiResponseHelper = apiResponseHelper;
+    private readonly IUserRepository _userRepository;
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IApiResponseHelper _apiResponseHelper;
+
+    public AuthService(IUserRepository userRepository, IPasswordHasher passwordHasher, IApiResponseHelper apiResponseHelper)
+    {
+      _userRepository = userRepository;
+      _passwordHasher = passwordHasher;
+      _apiResponseHelper = apiResponseHelper;
+    }
 
     public async Task<ApiResponse<AuthResponseDto>> Login(LoginDto loginDto)
     {

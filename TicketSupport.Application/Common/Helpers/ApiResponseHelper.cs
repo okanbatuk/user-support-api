@@ -1,4 +1,3 @@
-using TicketSupport.Application.Common;
 using TicketSupport.Application.Common.Interfaces;
 
 namespace TicketSupport.Application.Common.Helpers
@@ -24,7 +23,8 @@ namespace TicketSupport.Application.Common.Helpers
         Success = true,
         Message = message ?? "Success",
         ResponseCode = responseCode,
-        StatusCode = statusCode
+        StatusCode = statusCode,
+        Data = default
       };
     }
 
@@ -35,7 +35,8 @@ namespace TicketSupport.Application.Common.Helpers
         Success = false,
         Message = message ?? "Failed",
         ResponseCode = responseCode,
-        StatusCode = statusCode
+        StatusCode = statusCode,
+        Data = default
       };
     }
   }

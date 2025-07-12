@@ -3,14 +3,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketSupport.Application.DTOs.User;
 using TicketSupport.Application.Interfaces.Services;
+using TicketSupport.Domain.Entities;
 
 namespace TicketSupportAPI.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class UsersController(IUserService userService) : ControllerBase
+  public class UsersController : ControllerBase
   {
-    private readonly IUserService _userService = userService;
+    private readonly IUserService _userService;
+
+    public UsersController(IUserService userService)
+    {
+      _userService = userService;
+    }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()

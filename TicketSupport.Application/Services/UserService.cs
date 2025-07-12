@@ -6,9 +6,14 @@ using TicketSupport.Domain.Interfaces.Repositories;
 
 namespace TicketSupport.Application.Services
 {
-  public class UserService(IUserRepository userRepository) : IUserService
+  public class UserService : IUserService
   {
-    private readonly IUserRepository _userRepository = userRepository;
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository)
+    {
+      _userRepository = userRepository;
+    }
 
     public async Task<IEnumerable<User>> GetAllAsync()
     {

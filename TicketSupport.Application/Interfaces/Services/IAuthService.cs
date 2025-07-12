@@ -1,6 +1,5 @@
-using TicketSupport.Domain.Entities;
-using TicketSupport.Application.DTOs.Auth;
 using TicketSupport.Application.Common;
+using TicketSupport.Application.DTOs.Auth;
 
 namespace TicketSupport.Application.Interfaces.Services
 {
