@@ -16,11 +16,5 @@ namespace TicketSupport.Infrastructure.Repositories
     {
       return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
     }
-
-    public async Task<bool> CreateAsync(User user)
-    {
-      await _dbSet.AddAsync(user);
-      return await _context.SaveChangesAsync() > 0;
-    }
   }
 }

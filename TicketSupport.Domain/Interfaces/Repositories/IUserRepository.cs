@@ -7,6 +7,5 @@ namespace TicketSupport.Domain.Interfaces.Repositories
   {
     Task<User?> GetByEmailAsync(string email);
 
-    Task<bool> CreateAsync(User user);
   }
 }

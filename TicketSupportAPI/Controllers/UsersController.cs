@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketSupport.Application.DTOs.User;
 using TicketSupport.Application.Interfaces.Services;
-using TicketSupport.Domain.Entities;
 
 namespace TicketSupportAPI.Controllers
 {
@@ -21,28 +20,36 @@ namespace TicketSupportAPI.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
-      var users = await _userService.GetAllAsync();
-      return Ok(users.Select(u => new UserDto
-      {
-        UserId = u.Uuid,
-        Name = u.Name,
-        Email = u.Email
-      }));
+      var result = await _userService.GetAllAsync();
+      if (!result.Success) return StatusCode(result.StatusCode, result);
+      return StatusCode(result.StatusCode, result);
     }
 
     [HttpGet("{uuid}")]
     public async Task<ActionResult<UserDto>> GetUser(Guid uuid)
     {
-      var user = await _userService.GetByUuidAsync(uuid);
-      if (user == null)
-        return NotFound();
+      var result = await _userService.GetByUuidAsync(uuid);
+      if (!result.Success)
+        return StatusCode(result.StatusCode, result);
+      return StatusCode(result.StatusCode, result);
+    }
 
-      return Ok(new UserDto
-      {
-        UserId = user.Uuid,
-        Name = user.Name,
-        Email = user.Email
-      });
+    [HttpPost("{uuid}")]
+    public async Task<ActionResult<UserDto>> UpdateUser(Guid uuid, UpdateUserDto updateUserDto)
+    {
+      var result = await _userService.UpdateAsync(uuid, updateUserDto);
+      if (!result.Success)
+        return StatusCode(result.StatusCode, result);
+      return StatusCode(result.StatusCode, result);
+    }
+
+    [HttpDelete("{uuid}")]
+    public async Task<IActionResult> DeleteUser(Guid uuid)
+    {
+      var result = await _userService.DeleteAsync(uuid);
+      if (!result.Success)
+        return StatusCode(result.StatusCode, result);
+      return StatusCode(result.StatusCode, result);
     }
   }
 }
