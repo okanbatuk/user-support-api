@@ -5,8 +5,8 @@ using TicketSupport.Application.Interfaces.Services;
 
 namespace TicketSupportAPI.Controllers
 {
-  [Route("api/[controller]")]
   [ApiController]
+  [Route("api/[controller]")]
   public class AuthController : ControllerBase
   {
     private readonly IAuthService _authService;

@@ -10,10 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDatabase(builder.Configuration);
-builder.Services.AddApplicationServices();
-builder.Services.AddSingleton<IApiResponseHelper, ApiResponseHelper>();
-builder.Services.AddAutoMapper(typeof(UserMappingProfile));
+
+builder.Services
+  .ConfigureInvalidModelStateResponse()
+  .AddValidationServices()
+  .AddDatabase(builder.Configuration)
+  .AddApplicationServices()
+  .AddAutoMapper(typeof(UserMappingProfile));
 
 var app = builder.Build();
 

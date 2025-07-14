@@ -3,6 +3,7 @@ using AutoMapper;
 using TicketSupport.Application.Common;
 using TicketSupport.Application.Common.Interfaces;
 using TicketSupport.Application.DTOs.Auth;
+using TicketSupport.Application.Exceptions;
 using TicketSupport.Application.Interfaces;
 using TicketSupport.Application.Interfaces.Services;
 using TicketSupport.Domain.Entities;
@@ -34,7 +35,7 @@ namespace TicketSupport.Application.Services
     public async Task<ApiResponse<object>> Register(RegisterDto registerDto)
     {
       var existingUser = await _userRepository.GetByEmailAsync(registerDto.Email);
-      if (existingUser != null) return _apiResponseHelper.Fail<object>("User already exists", responseCode: "CONFLICT", statusCode: 409);
+      if (existingUser != null) throw new ConflictException("User already exists.");
 
       _passwordHasher.HashPassword(registerDto.Password, out var hash, out var salt);
       var user = _mapper.Map<User>(registerDto);
@@ -45,7 +46,7 @@ namespace TicketSupport.Application.Services
 
       var created = await _userRepository.SaveChangesAsync();
       if (!created)
-        return _apiResponseHelper.Fail<object>("Registration failed", responseCode: "INTERNAL_SERVER_ERROR", statusCode: 500);
+        throw new Exception("Something went wrong.");
 
       return _apiResponseHelper.Success<object>("User registered successfully", responseCode: "CREATED", statusCode: 201);
     }
@@ -54,7 +55,7 @@ namespace TicketSupport.Application.Services
     {
       var user = await _userRepository.GetByEmailAsync(loginDto.Email);
       if (user == null || !_passwordHasher.VerifyPassword(loginDto.Password, user.PasswordHash, user.PasswordSalt))
-        return _apiResponseHelper.Fail<User>("Login failed", responseCode: "UNAUTHORIZED", statusCode: 401);
+        throw new UnauthorizedException("Invalid email or password.");
 
       return _apiResponseHelper.Success(user, "Login successfully", responseCode: "SUCCESS", statusCode: 200);
     }

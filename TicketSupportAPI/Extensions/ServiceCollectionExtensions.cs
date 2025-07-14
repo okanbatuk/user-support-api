@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
+using TicketSupportAPI.Helpers;
 using TicketSupport.Application.Services;
 using TicketSupport.Application.Interfaces;
 using TicketSupport.Application.Interfaces.Services;
 using TicketSupport.Application.Common.Helpers;
 using TicketSupport.Application.Common.Interfaces;
 using TicketSupport.Domain.Interfaces.Repositories;
-using TicketSupport.Infrastructure.Data;
 using TicketSupport.Infrastructure.Repositories;
 
 namespace TicketSupportAPI.Extensions
@@ -20,8 +20,9 @@ namespace TicketSupportAPI.Extensions
       services.AddScoped<IAuthService, AuthService>();
       services.AddScoped<IPasswordHasher, PasswordHasher>();
       services.AddSingleton<IApiResponseHelper, ApiResponseHelper>();
+      services.AddSingleton<ExceptionHandler>();
 
-
+      services.AddValidationServices();
       return services;
     }
   }
