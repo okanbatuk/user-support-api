@@ -1,5 +1,6 @@
 using AutoMapper;
 using TicketSupport.Application.DTOs.Auth;
+using TicketSupport.Application.DTOs.User;
 using TicketSupport.Domain.Entities;
 
 namespace TicketSupport.Application.Common.Mappings
@@ -18,6 +19,10 @@ namespace TicketSupport.Application.Common.Mappings
       CreateMap<RegisterDto, User>()
           .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
           .ForMember(dest => dest.PasswordSalt, opt => opt.Ignore());
+
+      // User → UserDto
+      CreateMap<User, UserDto>()
+        .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Uuid));
     }
   }
 }

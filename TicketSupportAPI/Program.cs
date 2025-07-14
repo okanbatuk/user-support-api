@@ -17,7 +17,7 @@ builder.Services.AddAutoMapper(typeof(UserMappingProfile));
 
 var app = builder.Build();
 
-
+app.UseCustomMiddlewares();
 // app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

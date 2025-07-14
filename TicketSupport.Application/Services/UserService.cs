@@ -6,7 +6,6 @@ using TicketSupport.Application.Common.Interfaces;
 using TicketSupport.Application.DTOs.User;
 using TicketSupport.Application.Interfaces;
 using TicketSupport.Application.Interfaces.Services;
-using TicketSupport.Domain.Entities;
 using TicketSupport.Domain.Interfaces.Repositories;
 
 namespace TicketSupport.Application.Services
@@ -38,7 +37,6 @@ namespace TicketSupport.Application.Services
         return _apiResponseHelper.Fail<IEnumerable<UserDto>>("No users found", responseCode: "NOT_FOUND", statusCode: 404);
 
       var userDtos = _mapper.Map<IEnumerable<UserDto>>(users);
-
       return _apiResponseHelper.Success(userDtos, "Get All Users successfully", responseCode: "SUCCESS", statusCode: 200);
     }
 
